@@ -1,0 +1,149 @@
+ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+.color-picker {
+   border-right: 0.1rem solid $primary;
+   width: 12%;
+   height: 100vh;
+
+   &__brand-container {
+      padding-top: 2rem;
+      margin-bottom: 5.5rem;
+   }
+
+   &__brand {
+      text-align: center;
+      font-size: 3rem;
+      font-family: $secondary-font;
+   }
+
+   &__color-list {
+      text-align: center;
+   }
+
+   &__add-btn {
+      cursor: pointer;
+      background: $primary;
+      margin: auto;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      color: $icon-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+   }
+
+   &__list {
+      margin-top: 3rem;
+
+      li {
+         cursor: pointer;
+         margin: 2rem auto;
+         border-radius: 50%;
+         width: 2rem;
+         height: 2rem;
+
+         &:first-child {
+            background: $orange;
+         }
+
+         &:nth-child(2) {
+            background: $pomegranate;
+         }
+
+         &:nth-child(3) {
+            background: $amethyst;
+         }
+
+         &:nth-child(4) {
+            background: $peter-river;
+         }
+
+         &:nth-child(5) {
+            background: $emerald;
+         }
+
+         &:nth-child(6) {
+            background: $pink;
+         }
+      }
+   }
+}
+
+.main {
+   min-height: 100vh;
+   width: calc(100% - 12%);
+
+   &__search-bar {
+      width: 35%;
+      position: relative;
+      text-align: center;
+      margin: 5rem auto;
+      i {
+         position: absolute;
+         left: 1rem;
+         font-size: 2rem;
+         top: 0.7rem;
+      }
+   }
+
+   &__search-input {
+      width: 100%;
+      font-size: 1.6rem;
+      padding: 0.4rem 4rem;
+      border: none;
+      outline: none;
+      border-radius: 1rem;
+      background: #f9f9f9;
+   }
+
+   &__title {
+      font-size: 5rem;
+      font-family: $secondary-font;
+      margin-top: 3rem;
+   }
+
+   &__card-1 {
+      position: relative;
+      width: 30rem;
+      min-height: 30rem;
+      padding: 2rem;
+      border-radius: 1.7rem;
+      background: $orange;
+      box-shadow: 0.5rem 0.9rem 2rem 0px #adb5bd;
+   }
+
+   &__card-title {
+      font-family: $secondary-font;
+      font-size: 3.5rem;
+      padding-left: 1rem;
+   }
+
+   &__info {
+      font-size: 1.7rem;
+      word-break: break-all;
+      margin-top: 2.5rem;
+   }
+
+   &__edit-icon {
+      cursor: pointer;
+      border-radius: 50%;
+      background: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      font-size: 2rem;
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      i {
+         color: white;
+      }
+   }
+}
