@@ -1,0 +1,83 @@
+@keyframes btn {
+   0% {
+      transform: rotate(0) translateY(0);
+   }
+
+   50% {
+      transform: rotate(360deg) translateY(3px);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes transformOne {
+   0% {
+      transform: translateY(0);
+   }
+
+   100% {
+      transform: translateY(5rem);
+   }
+}
+
+@keyframes transformTwo {
+   0% {
+      transform: translateY(5rem);
+   }
+
+   100% {
+      transform: translateY(10rem);
+   }
+}
+
+@keyframes transformThree {
+   0% {
+      transform: translateY(10rem);
+   }
+
+   100% {
+      transform: translateY(15rem);
+   }
+}
+
+@keyframes transformFour {
+   0% {
+      transform: translateY(15rem);
+   }
+
+   100% {
+      transform: translateY(20rem);
+   }
+}
+
+@keyframes transformFive {
+   0% {
+      transform: translateY(20rem);
+   }
+
+   100% {
+      transform: translateY(25rem);
+   }
+}
+
+@keyframes transformSix {
+   0% {
+      transform: translateY(25rem);
+   }
+
+   100% {
+      transform: translateY(30rem);
+   }
+}
+
+@keyframes tr {
+   from {
+      transform: translateX(0);
+   }
+
+   to {
+      transform: translateX(-5.5rem);
+   }
+}

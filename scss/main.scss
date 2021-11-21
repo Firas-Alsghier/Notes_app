@@ -1,6 +1,8 @@
 // 1- helpers
 @import 'helpers/variable';
 @import 'helpers/map';
+@import 'base/animations';
+@import 'helpers/mixin';
 
 // 2- base
 @import 'base/typography';

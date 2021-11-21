@@ -1,0 +1,13 @@
+@mixin icon($bg: $primary, $dem: 4rem, $col: $icon-color) {
+   cursor: pointer;
+   border-radius: 50%;
+   background: $bg;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: $dem;
+   height: $dem;
+   font-size: 2.3rem;
+   position: absolute;
+   color: $col;
+}
