@@ -55,7 +55,7 @@ bulletsList.addEventListener('click', (e) => {
                     </div>
                     `
 
-        row.innerHTML += card;
+        row.insertAdjacentHTML('beforeend', card);
 
     }
 
@@ -64,9 +64,6 @@ bulletsList.addEventListener('click', (e) => {
 
 row.addEventListener('click', (e) => {
 
-    const removeIcon = document.querySelectorAll('.main__remove');
-    
-    console.log(removeIcon);
 
     if (e.target.className === 'ph-check') {
 
@@ -76,12 +73,9 @@ row.addEventListener('click', (e) => {
 
     } else if (e.target.className === 'ph-pencil') {
 
-        removeIcon.forEach(rm => {
+        const removeIcon = e.path[3].querySelector('.main__remove');
 
-            rm.style.animation = 'tr 0.9s ease-in-out forwards';
-
-        })
-
+        removeIcon.style.animation = 'tr 0.9s ease-in-out forwards'
 
         const pencil = document.querySelector('.main__edit-icon');
 
@@ -89,9 +83,7 @@ row.addEventListener('click', (e) => {
 
     } else if (e.target.className === 'ph-trash') {
 
-        // e.path[3].remove();
-        console.log(e);
-
+        e.path[4].remove();
     }
 
 
