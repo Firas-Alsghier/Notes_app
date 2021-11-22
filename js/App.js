@@ -3,9 +3,8 @@
 const addBtn = document.getElementById('add-btn');
 const bulletsList = document.getElementById('bullets-list');
 const row = document.querySelector('.row');
-const checkEditIcons = document.getElementById('check-edit-icons');
 const li = document.querySelectorAll('li');
-// const removeIcon = document.querySelector('.main__remove');
+
 
 addBtn.addEventListener('click', () => {
 
@@ -37,7 +36,7 @@ bulletsList.addEventListener('click', (e) => {
                                 <i class="ph-star"></i>
                             </div>
 
-                            <div class="main__check-edit-icons" id="check-edit-icons">
+                            <div class="main__check-edit-icons">
                                 <div class="main__edit-icon">
                                     <i class="ph-pencil"></i>
                                 </div>
@@ -71,21 +70,26 @@ row.addEventListener('click', (e) => {
 
         e.path[1].style.visibility = 'hidden';
 
+        e.path[2].querySelector('.main__edit-icon').removeEventListener('click', penEdit);
+
+        e.path[2].querySelector('.main__remove').style.animation = '';
+
+
     } else if (e.target.className === 'ph-pencil') {
 
-        const removeIcon = e.path[3].querySelector('.main__remove');
+        const removeIcon = e.path[2].querySelector('.main__remove');
 
         removeIcon.style.animation = 'tr 0.9s ease-in-out forwards'
 
-        const pencil = document.querySelector('.main__edit-icon');
+        const pencil = e.path[2].querySelector('.main__edit-icon');
 
         pencil.addEventListener('click', penEdit);
 
     } else if (e.target.className === 'ph-trash') {
 
         e.path[4].remove();
-    }
 
+    }
 
 })
 
@@ -94,6 +98,6 @@ function penEdit(e) {
 
     e.path[3].setAttribute('contenteditable', 'true');
 
-    row.children[1].style.visibility = 'visible';
+    e.path[3].querySelector('.main__check-icon').style.visibility = 'visible';
 
 }
