@@ -5,7 +5,6 @@ const bulletsList = document.getElementById('bullets-list');
 const row = document.querySelector('.row');
 const li = document.querySelectorAll('li');
 
-
 addBtn.addEventListener('click', () => {
 
     addBtn.style.animation = 'btn 2s ease-in-out';
@@ -56,9 +55,11 @@ bulletsList.addEventListener('click', (e) => {
 
         row.insertAdjacentHTML('beforeend', card);
 
+
     }
 
 })
+
 
 
 row.addEventListener('click', (e) => {
@@ -90,6 +91,7 @@ row.addEventListener('click', (e) => {
         e.path[4].remove();
 
     }
+    localStorage.setItem('cards', row.innerHTML);
 
 })
 
@@ -99,5 +101,11 @@ function penEdit(e) {
     e.path[3].setAttribute('contenteditable', 'true');
 
     e.path[3].querySelector('.main__check-icon').style.visibility = 'visible';
+
+}
+
+if (localStorage.getItem('cards')) {
+    
+    row.innerHTML = localStorage.getItem('cards');
 
 }
