@@ -9,7 +9,6 @@ ul {
    border-right: 0.1rem solid $primary;
    width: 12%;
    height: 100vh;
-
    &__brand-container {
       padding-top: 2rem;
       margin-bottom: 5.5rem;
@@ -92,6 +91,13 @@ ul {
          }
       }
    }
+
+   &__clear {
+      @include icon($bg: $pomegranate, $col: $primary); 
+      position: absolute;
+      bottom: 3rem;
+      right: 6rem;
+   }
 }
 
 .main {
@@ -139,8 +145,9 @@ ul {
    }
 
    &__card-title {
+      width: 50%;
       font-family: $secondary-font;
-      font-size: 3.5rem;
+      font-size: 3rem;
       padding-left: 1rem;
    }
 
@@ -178,10 +185,11 @@ ul {
       border-radius: inherit;
    }
 
-   &__fav {
-      @include icon;
-      top: 1.5rem;
-      right: 2rem;
+   &__time {
+      position: absolute;
+      top: 2.5rem;
+      right: 3rem;
+      font-size: 1.6rem;
    }
 
    &__remove {
@@ -190,4 +198,5 @@ ul {
       bottom: 2rem;
       z-index: 2;
    }
+
 }

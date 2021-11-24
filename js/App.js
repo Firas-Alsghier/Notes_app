@@ -1,10 +1,19 @@
 'use strict';
 
 const addBtn = document.getElementById('add-btn');
+const clear = document.getElementById('clear');
 const bulletsList = document.getElementById('bullets-list');
 const row = document.querySelector('.row');
 const li = document.querySelectorAll('li');
+const Week = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
+clear.addEventListener('click', () => {
+
+    row.innerHTML = '';
+
+    localStorage.clear();
+
+})
 addBtn.addEventListener('click', () => {
 
     addBtn.style.animation = 'btn 2s ease-in-out';
@@ -13,10 +22,14 @@ addBtn.addEventListener('click', () => {
 
 })
 
-
 bulletsList.addEventListener('click', (e) => {
 
     if (e.target.nodeName === 'LI') {
+
+        const date = new Date();
+        const dayOfWeek = Week[date.getDay()];
+        const day = date.getDate();
+        const year = date.getFullYear();
 
         const bulletColor = getComputedStyle(e.target).backgroundColor;
 
@@ -31,8 +44,8 @@ bulletsList.addEventListener('click', (e) => {
                             <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
                                 mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
                                 doloremque?</p>
-                            <div class="main__fav">
-                                <i class="ph-star"></i>
+                                <div class="main__time">
+                                <span contenteditable="false">${dayOfWeek} ${day}, ${year}</span>
                             </div>
 
                             <div class="main__check-edit-icons">
@@ -55,11 +68,12 @@ bulletsList.addEventListener('click', (e) => {
 
         row.insertAdjacentHTML('beforeend', card);
 
+        localStorage.setItem('cards', row.innerHTML);
+
 
     }
 
 })
-
 
 
 row.addEventListener('click', (e) => {
@@ -91,7 +105,6 @@ row.addEventListener('click', (e) => {
         e.path[4].remove();
 
     }
-    localStorage.setItem('cards', row.innerHTML);
 
 })
 
@@ -105,7 +118,7 @@ function penEdit(e) {
 }
 
 if (localStorage.getItem('cards')) {
-    
+
     row.innerHTML = localStorage.getItem('cards');
 
 }
