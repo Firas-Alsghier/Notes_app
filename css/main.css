@@ -88,7 +88,7 @@ ul {
   position: relative;
   border-right: 0.1rem solid #161516;
   width: 12%;
-  height: 100vh;
+  min-height: 100vh;
 }
 .color-picker__brand-container {
   padding-top: 2rem;

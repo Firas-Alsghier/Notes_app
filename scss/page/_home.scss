@@ -8,7 +8,7 @@ ul {
    position: relative;
    border-right: 0.1rem solid $primary;
    width: 12%;
-   height: 100vh;
+   min-height: 100vh;
    &__brand-container {
       padding-top: 2rem;
       margin-bottom: 5.5rem;
@@ -98,6 +98,7 @@ ul {
       bottom: 3rem;
       right: 6rem;
    }
+
 }
 
 .main {

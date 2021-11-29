@@ -6,6 +6,7 @@ const bulletsList = document.getElementById('bullets-list');
 const row = document.querySelector('.row');
 const li = document.querySelectorAll('li');
 const Week = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const search = document.getElementById('search');
 
 clear.addEventListener('click', () => {
 
@@ -14,6 +15,7 @@ clear.addEventListener('click', () => {
     localStorage.clear();
 
 })
+
 addBtn.addEventListener('click', () => {
 
     addBtn.style.animation = 'btn 2s ease-in-out';
@@ -70,7 +72,6 @@ bulletsList.addEventListener('click', (e) => {
 
         localStorage.setItem('cards', row.innerHTML);
 
-
     }
 
 })
@@ -89,6 +90,7 @@ row.addEventListener('click', (e) => {
 
         e.path[2].querySelector('.main__remove').style.animation = '';
 
+        localStorage.setItem('cards', row.innerHTML);
 
     } else if (e.target.className === 'ph-pencil') {
 
@@ -122,3 +124,27 @@ if (localStorage.getItem('cards')) {
     row.innerHTML = localStorage.getItem('cards');
 
 }
+
+
+search.addEventListener('input', () => {
+
+    const searchValue = search.value.toLowerCase();
+
+    console.log(searchValue);
+
+    const allCardsTitles = document.querySelectorAll('.col-lg-4');
+
+    allCardsTitles.forEach(card => {
+
+        let text = card.querySelector('.main__card-title').textContent;
+
+        if (text.toLowerCase().includes(searchValue.toLowerCase())) {
+
+            card.style.display = ''
+        } else {
+            card.style.display = 'none';
+        }
+
+    })
+
+})
