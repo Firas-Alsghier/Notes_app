@@ -42,13 +42,14 @@ bulletsList.addEventListener('click', (e) => {
                             <h2 class="main__card-title">
                                 Title
                             </h2>
+                            <div class="main__time">
+                                <span contenteditable="false">${dayOfWeek} ${day}, ${year}</span>
+                            </div>
                             <hr>
                             <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
                                 mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
                                 doloremque?</p>
-                                <div class="main__time">
-                                <span contenteditable="false">${dayOfWeek} ${day}, ${year}</span>
-                            </div>
+                                
 
                             <div class="main__check-edit-icons">
                                 <div class="main__edit-icon">

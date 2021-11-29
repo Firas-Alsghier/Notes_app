@@ -93,12 +93,11 @@ ul {
    }
 
    &__clear {
-      @include icon($bg: $pomegranate, $col: $primary); 
+      @include icon($bg: $pomegranate, $col: $primary);
       position: absolute;
       bottom: 3rem;
       right: 6rem;
    }
-
 }
 
 .main {
@@ -137,8 +136,8 @@ ul {
    &__card {
       margin-bottom: 7rem;
       position: relative;
-      width: 30rem;
-      min-height: 30rem;
+      width: 33rem;
+      min-height: 33rem;
       padding: 2rem;
       background: $emerald;
       border-radius: 1.7rem;
@@ -146,7 +145,6 @@ ul {
    }
 
    &__card-title {
-      width: 50%;
       font-family: $secondary-font;
       font-size: 3rem;
       padding-left: 1rem;
@@ -187,7 +185,7 @@ ul {
    }
 
    &__time {
-      position: absolute;
+      // position: absolute;
       top: 2.5rem;
       right: 3rem;
       font-size: 1.6rem;
@@ -199,5 +197,4 @@ ul {
       bottom: 2rem;
       z-index: 2;
    }
-
 }

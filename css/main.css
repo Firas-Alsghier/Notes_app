@@ -212,15 +212,14 @@ ul {
 .main__card {
   margin-bottom: 7rem;
   position: relative;
-  width: 30rem;
-  min-height: 30rem;
+  width: 33rem;
+  min-height: 33rem;
   padding: 2rem;
   background: #2ecc71;
   border-radius: 1.7rem;
   box-shadow: 0.5rem 0.9rem 2rem 0px #adb5bd;
 }
 .main__card-title {
-  width: 50%;
   font-family: "Merienda One", cursive;
   font-size: 3rem;
   padding-left: 1rem;
@@ -263,7 +262,6 @@ ul {
   border-radius: inherit;
 }
 .main__time {
-  position: absolute;
   top: 2.5rem;
   right: 3rem;
   font-size: 1.6rem;
