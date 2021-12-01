@@ -71,6 +71,13 @@ bulletsList.addEventListener('click', (e) => {
 
         row.insertAdjacentHTML('beforeend', card);
 
+        if (getComputedStyle(document.querySelector('.main__remove')).background == getComputedStyle(document.querySelector('.main__card')).
+            background) {
+
+            document.querySelector('.main__remove').style.background = 'rgb(255, 255, 255)';
+
+        }
+
         localStorage.setItem('cards', row.innerHTML);
 
     }
