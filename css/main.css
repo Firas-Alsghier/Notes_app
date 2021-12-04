@@ -137,6 +137,15 @@ ul {
   animation: transformOne 0.8s ease-in-out forwards 0.6s;
   z-index: 6;
 }
+.color-picker__list li:first-child::before {
+  content: "";
+  background: inherit;
+  width: 2rem;
+  height: 2rem;
+  border-radius: inherit;
+  position: absolute;
+  left: 0;
+}
 .color-picker__list li:nth-child(2) {
   background: #e74c3c;
   animation: transformTwo 0.8s ease-in-out forwards 2s;
@@ -179,6 +188,11 @@ ul {
   right: 6rem;
 }
 
+.pb:nth-of-type(n + 4) {
+  margin-top: 12rem;
+  margin-bottom: 3rem;
+}
+
 .main {
   min-height: 100vh;
   width: calc(100% - 12%);
@@ -208,14 +222,23 @@ ul {
   font-size: 5rem;
   font-family: "Merienda One", cursive;
   margin-top: 3rem;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.main__notes {
+  margin-top: 10rem;
 }
 .main__card {
-  margin-bottom: 7rem;
-  position: relative;
+  margin-bottom: 12rem;
+  position: absolute;
+  top: 0;
   width: 33rem;
   min-height: 33rem;
   padding: 2rem;
-  border-radius: 1.7rem;
+  border-radius: 1.4rem;
   box-shadow: 0.5rem 0.9rem 2rem 0px #adb5bd;
 }
 .main__card-title {
@@ -251,14 +274,12 @@ ul {
   z-index: 4;
 }
 .main__custom {
-  position: absolute;
+  padding: 1rem 2rem;
   background: #f5f6fa;
-  width: 30rem;
-  height: 30rem;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  border-radius: inherit;
+  width: 33rem;
+  height: 33rem;
+  border-radius: 1.4rem;
+  transform: translateY(-8rem);
 }
 .main__time {
   top: 2.5rem;
@@ -280,6 +301,25 @@ ul {
   right: 2rem;
   bottom: 2rem;
   z-index: 2;
+}
+.main__line-one {
+  display: flex;
+  justify-content: space-between;
+}
+.main__alignment {
+  font-size: 1.8rem;
+}
+.main__alignment li {
+  display: inline-block;
+  cursor: pointer;
+}
+.main__line-two {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.main__label {
+  font-size: 1.3rem;
 }
 
 /*# sourceMappingURL=main.css.map */

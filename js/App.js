@@ -5,7 +5,7 @@ const clear = document.getElementById('clear');
 const bulletsList = document.getElementById('bullets-list');
 const row = document.querySelector('.row');
 const li = document.querySelectorAll('li');
-const Week = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const Week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const search = document.getElementById('search');
 
 clear.addEventListener('click', () => {
@@ -35,38 +35,75 @@ bulletsList.addEventListener('click', (e) => {
 
         const bulletColor = getComputedStyle(e.target).backgroundColor;
 
+
         const card = `
-                   <div class="col-lg-4">
-                        <div class="main__card" style="background: ${bulletColor};" contenteditable="true">
-                            <div class="main__custom"></div>
-                            <h2 class="main__card-title">
-                                Title
-                            </h2>
-                            <div class="main__time">
-                                <span contenteditable="false">${dayOfWeek} ${day}, ${year}</span>
-                            </div>
-                            <hr>
-                            <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
-                                mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
-                                doloremque?</p>
-                                
+        <div class="col-lg-4 pb">
+        <div class="main__custom">
+            <div class="main__line-one">
+                <div class="main__alignment">
+                    <ul>
+                        <li><i class="ph-text-align-left"></i></li>
+                        <li><i class="ph-text-align-center"></i></li>
+                        <li><i class="ph-text-align-right"></i></li>
+                    </ul>
+                </div>
 
-                            <div class="main__check-edit-icons">
-                                <div class="main__edit-icon">
-                                    <i class="ph-pencil"></i>
-                                </div>
+                <div class="main__size">
+                    <input type="range" class="main__range">
+                </div>
 
-                                <div class="main__check-icon">
-                                    <i class="ph-check"></i>
-                                </div>
+                <div class="main__weight">
+                    <select class="main__weight">
+                        <option value="lighter">Lighter</option>
+                        <option value="medium">Medium</option>
+                        <option value="bold">Bold</option>
+                    </select>
+                </div>
+            </div>
+            <div class="main__line-two">
+            <div class="main__font-color">
+                <input type="color" id="font-color-input">
+                <label class="main__label" for="font-color-input">HTML</label>
+            </div>
 
-                                <div class="main__remove">
-                                    <i class="ph-trash"></i>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
+            <div class="main__bg-color">
+            <label class="main__label" for="bg-color-input">Background color: </label>
+            <input type="color" id="bg-color-input">
+            </div>
+            </div>
+
+        </div>
+        <div class="main__card" style="background: ${bulletColor};" contenteditable="true">
+
+            <h2 class="main__card-title">
+                Title
+            </h2>
+            <div class="main__time">
+                <span contenteditable="false">${dayOfWeek} ${day}, ${year}</span>
+            </div>
+            <hr>
+            <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
+                mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
+                doloremque?</p>
+
+
+            <div class="main__check-edit-icons">
+                <div class="main__edit-icon">
+                    <i class="ph-pencil"></i>
+                </div>
+
+                <div class="main__check-icon">
+                    <i class="ph-check"></i>
+                </div>
+
+                <div class="main__remove">
+                    <i class="ph-trash"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
                     `
 
         row.insertAdjacentHTML('beforeend', card);
@@ -78,10 +115,12 @@ bulletsList.addEventListener('click', (e) => {
 
         }
 
+
+
+
         localStorage.setItem('cards', row.innerHTML);
 
     }
-
 })
 
 
@@ -154,5 +193,4 @@ search.addEventListener('input', () => {
         }
 
     })
-
 })
