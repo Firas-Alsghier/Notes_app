@@ -35,7 +35,6 @@ bulletsList.addEventListener('click', (e) => {
 
         const bulletColor = getComputedStyle(e.target).backgroundColor;
 
-
         const card = `
         <div class="col-lg-4 pb">
         <div class="main__custom">
@@ -108,16 +107,6 @@ bulletsList.addEventListener('click', (e) => {
 
         row.insertAdjacentHTML('beforeend', card);
 
-        if (getComputedStyle(document.querySelector('.main__remove')).background == getComputedStyle(document.querySelector('.main__card')).
-            background) {
-
-            document.querySelector('.main__remove').style.background = 'rgb(255, 255, 255)';
-
-        }
-
-
-
-
         localStorage.setItem('cards', row.innerHTML);
 
     }
@@ -125,7 +114,6 @@ bulletsList.addEventListener('click', (e) => {
 
 
 row.addEventListener('click', (e) => {
-
 
     if (e.target.className === 'ph-check') {
 
@@ -138,6 +126,8 @@ row.addEventListener('click', (e) => {
         e.path[2].querySelector('.main__remove').style.animation = '';
 
         localStorage.setItem('cards', row.innerHTML);
+
+        e.path[4].querySelector('.main__custom').style.transform = 'translateY(0)';
 
     } else if (e.target.className === 'ph-pencil') {
 
@@ -153,6 +143,31 @@ row.addEventListener('click', (e) => {
 
         e.path[4].remove();
 
+    } else if (e.target) {
+
+        console.log(e);
+        e.path[2].querySelector('.ph-text-align-left').addEventListener('click', () => {
+
+            e.target.style.textAlign = 'left';
+
+            console.log(e.target)
+
+           })
+
+        e.path[2].querySelector('.ph-text-align-center').addEventListener('click', () => {
+
+            e.target.style.textAlign = 'center';
+
+            console.log(e.target)
+            
+        })
+
+        e.path[2].querySelector('.ph-text-align-right').addEventListener('click', () => {
+
+            e.target.style.textAlign = 'right';
+
+        })
+
     }
 
 })
@@ -163,6 +178,8 @@ function penEdit(e) {
     e.path[3].setAttribute('contenteditable', 'true');
 
     e.path[3].querySelector('.main__check-icon').style.visibility = 'visible';
+
+    e.path[4].querySelector('.main__custom').style.transform = 'translateY(-8rem)';
 
 }
 

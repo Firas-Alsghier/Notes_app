@@ -203,6 +203,7 @@ ul {
       width: 33rem;
       height: 33rem;
       border-radius: 1.4rem;
+      transition: transform 1s;
       transform: translateY(-8rem);
    }
 
@@ -213,7 +214,7 @@ ul {
    }
 
    &__remove {
-      @include icon($bg: $pomegranate, $col: $primary);
+      @include icon($bg: #eb2f06, $col: $primary);
       right: 2rem;
       bottom: 2rem;
       z-index: 2;
