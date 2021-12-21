@@ -47,28 +47,24 @@ bulletsList.addEventListener('click', (e) => {
                     </ul>
                 </div>
 
-                <div class="main__size">
-                    <input type="range" class="main__range">
-                </div>
-
-                <div class="main__weight">
+                <div>
                     <select class="main__weight">
                         <option value="lighter">Lighter</option>
-                        <option value="medium">Medium</option>
-                        <option value="bold">Bold</option>
+                        <option value="500">Medium</option>
+                        <option value="bolder">Bold</option>
                     </select>
                 </div>
             </div>
             <div class="main__line-two">
             <div class="main__font-color">
-                <input type="color" id="font-color-input">
-                <label class="main__label" for="font-color-input">HTML</label>
+                <input type="color" class="font-color-input">
+                <label class="main__label" for="font-color-input">Text</label>
             </div>
 
 
             <div class="main__bg-color">
             <label class="main__label" for="bg-color-input">Background color: </label>
-            <input type="color" id="bg-color-input">
+            <input type="color" class="bg-color-input">
             </div>
             </div>
 
@@ -85,7 +81,6 @@ bulletsList.addEventListener('click', (e) => {
             <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
                 mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
                 doloremque?</p>
-
 
             <div class="main__check-edit-icons">
                 <div class="main__edit-icon">
@@ -125,9 +120,9 @@ row.addEventListener('click', (e) => {
 
         e.path[2].querySelector('.main__remove').style.animation = '';
 
-        localStorage.setItem('cards', row.innerHTML);
-
         e.path[4].querySelector('.main__custom').style.transform = 'translateY(0)';
+
+        localStorage.setItem('cards', row.innerHTML);
 
     } else if (e.target.className === 'ph-pencil') {
 
@@ -143,35 +138,71 @@ row.addEventListener('click', (e) => {
 
         e.path[4].remove();
 
-    } else if (e.target) {
+    } else if (e.target.localName === 'p' || e.target.localName === 'h2') {
 
-        console.log(e);
+        const z = document.getElementsByClassName('align');
+
+        for (const i of z) {
+
+            i.classList.remove('align');
+
+        }
+
+        e.target.classList.add('align');
+
         e.path[2].querySelector('.ph-text-align-left').addEventListener('click', () => {
 
-            e.target.style.textAlign = 'left';
+            document.querySelector('.align').style.textAlign = 'left';
 
             console.log(e.target)
 
-           })
+        })
 
         e.path[2].querySelector('.ph-text-align-center').addEventListener('click', () => {
 
-            e.target.style.textAlign = 'center';
+            document.querySelector('.align').style.textAlign = 'center';
 
             console.log(e.target)
-            
+
         })
 
         e.path[2].querySelector('.ph-text-align-right').addEventListener('click', () => {
 
-            e.target.style.textAlign = 'right';
+            document.querySelector('.align').style.textAlign = 'right';
+
+        })
+
+    } else if (e.target.className === 'main__weight') {
+
+
+        e.target.addEventListener('click', () => {
+
+            e.path[4].querySelector('.main__info').style.fontWeight = e.target.value;
+
+        })
+
+    } else if (e.target.className === 'font-color-input') {
+
+        console.log(e)
+        e.target.addEventListener('input', () => {
+
+            e.path[4].querySelector('.main__info').style.color = e.target.value;
+
+
+        })
+
+    } else if (e.target.className === 'bg-color-input') {
+
+        console.log(e)
+        e.target.addEventListener('input', () => {
+
+            e.path[4].querySelector('.main__card').style.backgroundColor = e.target.value;
 
         })
 
     }
 
 })
-
 
 function penEdit(e) {
 
@@ -180,6 +211,9 @@ function penEdit(e) {
     e.path[3].querySelector('.main__check-icon').style.visibility = 'visible';
 
     e.path[4].querySelector('.main__custom').style.transform = 'translateY(-8rem)';
+
+    localStorage.setItem('cards', row.innerHTML);
+
 
 }
 
