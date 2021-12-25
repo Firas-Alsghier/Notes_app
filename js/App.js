@@ -8,14 +8,6 @@ const li = document.querySelectorAll('li');
 const Week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const search = document.getElementById('search');
 
-clear.addEventListener('click', () => {
-
-    row.innerHTML = '';
-
-    localStorage.clear();
-
-})
-
 addBtn.addEventListener('click', () => {
 
     addBtn.style.animation = 'btn 2s ease-in-out';
@@ -57,14 +49,14 @@ bulletsList.addEventListener('click', (e) => {
             </div>
             <div class="main__line-two">
             <div class="main__font-color">
-                <input type="color" class="font-color-input">
-                <label class="main__label" for="font-color-input">Text</label>
+                <input type="color" id="main__label" class="main__font-color-input">
+                <label class="main__label" for="main__label">Text</label>
             </div>
 
 
             <div class="main__bg-color">
-            <label class="main__label" for="bg-color-input">Background color: </label>
-            <input type="color" class="bg-color-input">
+            <label class="main__label" for="bg-id">Background color: </label>
+            <input type="color" id="bg-id" class="main__bg-color-input">
             </div>
             </div>
 
@@ -81,6 +73,7 @@ bulletsList.addEventListener('click', (e) => {
             <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
                 mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
                 doloremque?</p>
+            
 
             <div class="main__check-edit-icons">
                 <div class="main__edit-icon">
@@ -112,31 +105,33 @@ row.addEventListener('click', (e) => {
 
     if (e.target.className === 'ph-check') {
 
-        e.path[3].removeAttribute('contenteditable');
+        e.composedPath()[3].removeAttribute('contenteditable');
 
-        e.path[1].style.visibility = 'hidden';
+        e.composedPath()[1].style.visibility = 'hidden';
 
-        e.path[2].querySelector('.main__edit-icon').removeEventListener('click', penEdit);
+        e.composedPath()[2].querySelector('.main__edit-icon').removeEventListener('click', penEdit);
 
-        e.path[2].querySelector('.main__remove').style.animation = '';
+        e.composedPath()[2].querySelector('.main__remove').style.animation = '';
 
-        e.path[4].querySelector('.main__custom').style.transform = 'translateY(0)';
+        e.composedPath()[4].querySelector('.main__custom').style.transform = 'translateY(0)';
 
         localStorage.setItem('cards', row.innerHTML);
 
     } else if (e.target.className === 'ph-pencil') {
 
-        const removeIcon = e.path[2].querySelector('.main__remove');
+        const removeIcon = e.composedPath()[2].querySelector('.main__remove');
 
         removeIcon.style.animation = 'tr 0.9s ease-in-out forwards'
 
-        const pencil = e.path[2].querySelector('.main__edit-icon');
+        const pencil = e.composedPath()[2].querySelector('.main__edit-icon');
 
         pencil.addEventListener('click', penEdit);
 
     } else if (e.target.className === 'ph-trash') {
 
-        e.path[4].remove();
+        e.composedPath()[4].remove();
+        localStorage.setItem('cards', row.innerHTML);
+
 
     } else if (e.target.localName === 'p' || e.target.localName === 'h2') {
 
@@ -150,23 +145,20 @@ row.addEventListener('click', (e) => {
 
         e.target.classList.add('align');
 
-        e.path[2].querySelector('.ph-text-align-left').addEventListener('click', () => {
+        e.composedPath()[3].querySelector('.ph-text-align-left').addEventListener('click', () => {
 
             document.querySelector('.align').style.textAlign = 'left';
 
-            console.log(e.target)
-
         })
 
-        e.path[2].querySelector('.ph-text-align-center').addEventListener('click', () => {
+        e.composedPath()[3].querySelector('.ph-text-align-center').addEventListener('click', () => {
 
             document.querySelector('.align').style.textAlign = 'center';
 
-            console.log(e.target)
 
         })
 
-        e.path[2].querySelector('.ph-text-align-right').addEventListener('click', () => {
+        e.composedPath()[3].querySelector('.ph-text-align-right').addEventListener('click', () => {
 
             document.querySelector('.align').style.textAlign = 'right';
 
@@ -174,29 +166,31 @@ row.addEventListener('click', (e) => {
 
     } else if (e.target.className === 'main__weight') {
 
+        e.composedPath()[4].addEventListener('input', (we) => {
 
-        e.target.addEventListener('click', () => {
-
-            e.path[4].querySelector('.main__info').style.fontWeight = e.target.value;
-
-        })
-
-    } else if (e.target.className === 'font-color-input') {
-
-        console.log(e)
-        e.target.addEventListener('input', () => {
-
-            e.path[4].querySelector('.main__info').style.color = e.target.value;
+            we.composedPath()[4].querySelector('.main__info').style.fontWeight = e.target.value;
+            localStorage.setItem('cards', row.innerHTML);
 
 
         })
 
-    } else if (e.target.className === 'bg-color-input') {
 
-        console.log(e)
-        e.target.addEventListener('input', () => {
+    } else if (e.target.className === 'main__font-color-input') {
 
-            e.path[4].querySelector('.main__card').style.backgroundColor = e.target.value;
+        e.composedPath()[4].addEventListener('input', (ft) => {
+
+            ft.composedPath()[4].querySelector('.main__info').style.color = e.target.value;
+            localStorage.setItem('cards', row.innerHTML);
+
+        })
+
+    } else if (e.target.className === 'main__bg-color-input') {
+
+        e.composedPath()[4].addEventListener('input', (bg) => {
+
+            bg.composedPath()[4].querySelector('.main__card').style.backgroundColor = e.target.value;
+            localStorage.setItem('cards', row.innerHTML);
+
 
         })
 
@@ -206,11 +200,11 @@ row.addEventListener('click', (e) => {
 
 function penEdit(e) {
 
-    e.path[3].setAttribute('contenteditable', 'true');
+    e.composedPath()[3].setAttribute('contenteditable', 'true');
 
-    e.path[3].querySelector('.main__check-icon').style.visibility = 'visible';
+    e.composedPath()[3].querySelector('.main__check-icon').style.visibility = 'visible';
 
-    e.path[4].querySelector('.main__custom').style.transform = 'translateY(-8rem)';
+    e.composedPath()[4].querySelector('.main__custom').style.transform = 'translateY(-8rem)';
 
     localStorage.setItem('cards', row.innerHTML);
 
@@ -228,8 +222,6 @@ search.addEventListener('input', () => {
 
     const searchValue = search.value.toLowerCase();
 
-    console.log(searchValue);
-
     const allCardsTitles = document.querySelectorAll('.col-lg-4');
 
     allCardsTitles.forEach(card => {
@@ -244,4 +236,13 @@ search.addEventListener('input', () => {
         }
 
     })
+})
+
+
+clear.addEventListener('click', () => {
+
+    row.innerHTML = '';
+
+    localStorage.clear();
+
 })

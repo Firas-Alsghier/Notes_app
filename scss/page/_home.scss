@@ -33,9 +33,6 @@ ul {
       height: 4rem;
       border-radius: 50%;
       color: $icon-color;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 3rem;
       z-index: 2;
    }
@@ -128,7 +125,7 @@ ul {
          position: absolute;
          left: 1rem;
          font-size: 2rem;
-         top: 0.7rem;
+         top: .3rem;
       }
    }
 
@@ -162,7 +159,7 @@ ul {
       position: absolute;
       top: 0;
       width: 33rem;
-      min-height: 33rem;
+      height: 33rem;
       padding: 2rem;
       border-radius: 1.4rem;
       box-shadow: 0.5rem 0.9rem 2rem 0px #adb5bd;
@@ -175,9 +172,15 @@ ul {
    }
 
    &__info {
-      font-size: 1.7rem;
+      width: 100%;
+      height: 65%;
+      font-size: 1.8rem;
       word-break: break-all;
       margin-top: 2.5rem;
+      overflow-y: auto;
+      p {
+         padding-right: .7rem
+      }
    }
 
    %edit-check {
@@ -242,5 +245,16 @@ ul {
 
    &__label {
       font-size: 1.3rem;
+   }
+
+   &__check-edit-icons {
+      position: absolute;
+      right: 0;
+      top: 11.5rem;
+   }
+
+   &__font-color-input, &__bg-color-input {
+      width: 5rem;
+      height: 2.7rem;
    }
 }
