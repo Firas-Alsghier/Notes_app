@@ -5,29 +5,33 @@ const clear = document.getElementById('clear');
 const bulletsList = document.getElementById('bullets-list');
 const row = document.querySelector('.row');
 const li = document.querySelectorAll('li');
-const Week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const Week = [
+   'Sunday',
+   'Monday',
+   'Tuesday',
+   'Wednesday',
+   'Thursday',
+   'Friday',
+   'Saturday',
+];
 const search = document.getElementById('search');
 
 addBtn.addEventListener('click', () => {
+   addBtn.style.animation = 'btn 2s ease-in-out';
 
-    addBtn.style.animation = 'btn 2s ease-in-out';
-
-    bulletsList.style.display = 'block';
-
-})
+   bulletsList.style.display = 'block';
+});
 
 bulletsList.addEventListener('click', (e) => {
+   if (e.target.nodeName === 'LI') {
+      const date = new Date();
+      const dayOfWeek = Week[date.getDay()];
+      const day = date.getDate();
+      const year = date.getFullYear();
 
-    if (e.target.nodeName === 'LI') {
+      const bulletColor = getComputedStyle(e.target).backgroundColor;
 
-        const date = new Date();
-        const dayOfWeek = Week[date.getDay()];
-        const day = date.getDate();
-        const year = date.getFullYear();
-
-        const bulletColor = getComputedStyle(e.target).backgroundColor;
-
-        const card = `
+      const card = `
         <div class="col-lg-4 pb">
         <div class="main__custom">
             <div class="main__line-one">
@@ -61,15 +65,15 @@ bulletsList.addEventListener('click', (e) => {
             </div>
 
         </div>
-        <div class="main__card" style="background: ${bulletColor};" contenteditable="true">
+        <div class="main__card bounceIn" style="background: ${bulletColor};" contenteditable="true">
 
             <h2 class="main__card-title">
                 Title
             </h2>
-            <div class="main__time">
-                <span contenteditable="false">${dayOfWeek} ${day}, ${year}</span>
+            <div class="main__time" contenteditable="false">
+                <span>${dayOfWeek} ${day}, ${year}</span>
             </div>
-            <hr>
+            <hr contenteditable="false">
             <p class="main__info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
                 mollitia tempore alias molestias minima cumque iure repudiandae dolorum nihil
                 doloremque?</p>
@@ -91,158 +95,121 @@ bulletsList.addEventListener('click', (e) => {
             </div>
         </div>
     </div>
-                    `
+                    `;
 
-        row.insertAdjacentHTML('beforeend', card);
-
-        localStorage.setItem('cards', row.innerHTML);
-
-    }
-})
-
+      row.insertAdjacentHTML('beforeend', card);
+   }
+});
 
 row.addEventListener('click', (e) => {
+   if (e.target.className === 'ph-check') {
+      e.composedPath()[3].removeAttribute('contenteditable');
 
-    if (e.target.className === 'ph-check') {
+      e.composedPath()[1].style.visibility = 'hidden';
 
-        e.composedPath()[3].removeAttribute('contenteditable');
+      e.composedPath()[2]
+         .querySelector('.main__edit-icon')
+         .removeEventListener('click', penEdit);
 
-        e.composedPath()[1].style.visibility = 'hidden';
+      e.composedPath()[2].querySelector('.main__remove').style.animation = '';
 
-        e.composedPath()[2].querySelector('.main__edit-icon').removeEventListener('click', penEdit);
+      e.composedPath()[4].querySelector('.main__custom').style.transform =
+         'translateY(0)';
+   } else if (e.target.className === 'ph-pencil') {
+      const removeIcon = e.composedPath()[2].querySelector('.main__remove');
 
-        e.composedPath()[2].querySelector('.main__remove').style.animation = '';
+      removeIcon.style.animation = 'tr 0.9s ease-in-out forwards';
 
-        e.composedPath()[4].querySelector('.main__custom').style.transform = 'translateY(0)';
+      const pencil = e.composedPath()[2].querySelector('.main__edit-icon');
 
-        localStorage.setItem('cards', row.innerHTML);
+      pencil.addEventListener('click', penEdit);
+   } else if (e.target.className === 'ph-trash') {
+      e.composedPath()[4].remove();
+   } else if (e.target.localName === 'p' || e.target.localName === 'h2') {
+      const alignClass = document.getElementsByClassName('align');
 
-    } else if (e.target.className === 'ph-pencil') {
+      for (const i of alignClass) {
+         i.classList.remove('align');
+      }
 
-        const removeIcon = e.composedPath()[2].querySelector('.main__remove');
+      e.target.classList.add('align');
 
-        removeIcon.style.animation = 'tr 0.9s ease-in-out forwards'
-
-        const pencil = e.composedPath()[2].querySelector('.main__edit-icon');
-
-        pencil.addEventListener('click', penEdit);
-
-    } else if (e.target.className === 'ph-trash') {
-
-        e.composedPath()[4].remove();
-        localStorage.setItem('cards', row.innerHTML);
-
-
-    } else if (e.target.localName === 'p' || e.target.localName === 'h2') {
-
-        const z = document.getElementsByClassName('align');
-
-        for (const i of z) {
-
-            i.classList.remove('align');
-
-        }
-
-        e.target.classList.add('align');
-
-        e.composedPath()[3].querySelector('.ph-text-align-left').addEventListener('click', () => {
-
+      e.composedPath()[2]
+         .querySelector('.ph-text-align-left')
+         .addEventListener('click', () => {
             document.querySelector('.align').style.textAlign = 'left';
+         });
 
-        })
-
-        e.composedPath()[3].querySelector('.ph-text-align-center').addEventListener('click', () => {
-
+      e.composedPath()[2]
+         .querySelector('.ph-text-align-center')
+         .addEventListener('click', () => {
             document.querySelector('.align').style.textAlign = 'center';
+         });
 
-
-        })
-
-        e.composedPath()[3].querySelector('.ph-text-align-right').addEventListener('click', () => {
-
+      e.composedPath()[2]
+         .querySelector('.ph-text-align-right')
+         .addEventListener('click', () => {
             document.querySelector('.align').style.textAlign = 'right';
-
-        })
-
-    } else if (e.target.className === 'main__weight') {
-
-        e.composedPath()[4].addEventListener('input', (we) => {
-
-            we.composedPath()[4].querySelector('.main__info').style.fontWeight = e.target.value;
-            localStorage.setItem('cards', row.innerHTML);
-
-
-        })
-
-
-    } else if (e.target.className === 'main__font-color-input') {
-
-        e.composedPath()[4].addEventListener('input', (ft) => {
-
-            ft.composedPath()[4].querySelector('.main__info').style.color = e.target.value;
-            localStorage.setItem('cards', row.innerHTML);
-
-        })
-
-    } else if (e.target.className === 'main__bg-color-input') {
-
-        e.composedPath()[4].addEventListener('input', (bg) => {
-
-            bg.composedPath()[4].querySelector('.main__card').style.backgroundColor = e.target.value;
-            localStorage.setItem('cards', row.innerHTML);
-
-
-        })
-
-    }
-
-})
+         });
+   } else if (e.target.className === 'main__weight') {
+      e.composedPath()[4].addEventListener('input', (we) => {
+         we.composedPath()[4].querySelector('.main__info').style.fontWeight =
+            e.target.value;
+      });
+   } else if (e.target.className === 'main__font-color-input') {
+      e.composedPath()[4].addEventListener('input', (ft) => {
+         ft.composedPath()[4].querySelector('.main__info').style.color =
+            e.target.value;
+      });
+   } else if (e.target.className === 'main__bg-color-input') {
+      e.composedPath()[4].addEventListener('input', (bg) => {
+         bg
+            .composedPath()[4]
+            .querySelector('.main__card').style.backgroundColor =
+            e.target.value;
+      });
+   }
+});
 
 function penEdit(e) {
+   e.composedPath()[3].setAttribute('contenteditable', 'true');
 
-    e.composedPath()[3].setAttribute('contenteditable', 'true');
+   e.composedPath()[3].querySelector('.main__check-icon').style.visibility =
+      'visible';
 
-    e.composedPath()[3].querySelector('.main__check-icon').style.visibility = 'visible';
-
-    e.composedPath()[4].querySelector('.main__custom').style.transform = 'translateY(-8rem)';
-
-    localStorage.setItem('cards', row.innerHTML);
-
-
+   e.composedPath()[4].querySelector('.main__custom').style.transform =
+      'translateY(-8rem)';
 }
 
 if (localStorage.getItem('cards')) {
-
-    row.innerHTML = localStorage.getItem('cards');
-
+   row.innerHTML = localStorage.getItem('cards');
 }
 
-
 search.addEventListener('input', () => {
+   const searchValue = search.value.toLowerCase();
 
-    const searchValue = search.value.toLowerCase();
+   const allCardsTitles = document.querySelectorAll('.col-lg-4');
 
-    const allCardsTitles = document.querySelectorAll('.col-lg-4');
+   allCardsTitles.forEach((card) => {
+      let text = card.querySelector('.main__card-title').textContent;
 
-    allCardsTitles.forEach(card => {
-
-        let text = card.querySelector('.main__card-title').textContent;
-
-        if (text.toLowerCase().includes(searchValue.toLowerCase())) {
-
-            card.style.display = ''
-        } else {
-            card.style.display = 'none';
-        }
-
-    })
-})
-
+      if (text.toLowerCase().includes(searchValue.toLowerCase())) {
+         card.style.display = '';
+      } else {
+         card.style.display = 'none';
+      }
+   });
+});
 
 clear.addEventListener('click', () => {
+   row.innerHTML = '';
 
-    row.innerHTML = '';
+   localStorage.clear();
+});
 
-    localStorage.clear();
-
-})
+window.addEventListener('unload', () => {
+   document.querySelectorAll('.bounceIn').forEach((bounce) => {
+      bounce.classList.remove('bounceIn');
+   });
+   localStorage.setItem('cards', row.innerHTML);
+});

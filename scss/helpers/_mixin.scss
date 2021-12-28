@@ -3,11 +3,11 @@
    display: -ms-flexbox;
    display: flex;
    -webkit-box-align: center;
-       -ms-flex-align: center;
-           align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
    -webkit-box-pack: center;
-       -ms-flex-pack: center;
-           justify-content: center;
+   -ms-flex-pack: center;
+   justify-content: center;
    cursor: pointer;
    border-radius: 50%;
    background: $bg;
@@ -17,8 +17,8 @@
    position: absolute;
    color: $col;
    i {
-      -webkit-transform: translateY(.4rem);
-          -ms-transform: translateY(.4rem);
-              transform: translateY(.4rem);
+      -webkit-transform: translateY(-0.1rem);
+      -ms-transform: translateY(-0.1rem);
+      transform: translateY(-0.1rem);
    }
 }
